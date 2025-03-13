@@ -19,20 +19,17 @@ type Employee struct {
 
 func main () {
 
-fileOperations.ReadFromFile()
+	fileOperations.ReadFromFile()
 
+	var  employee Employee
 
-	var firstName = ""
-	var placeOfWork = "" 
-	var timeOfEmployment = 0.0
-
-	var employee = Employee{firstName , placeOfWork, timeOfEmployment}
+	// var employee = Employee{firstName , placeOfWork, timeOfEmployment}
 
 	fmt.Println("hello first go app!")
 	fmt.Println("++++====================++++")
 
 	fmt.Println("what is your name?")
-	fmt.Scanln(&firstName)
+	fmt.Scanln(&employee.firstName)
 	fmt.Println("Hello, ", employee.firstName)
 
 	fmt.Println("where do you work?")
@@ -42,19 +39,20 @@ fileOperations.ReadFromFile()
 		fmt.Println("Error reading input:", err)
 		return
 	}
-	placeOfWork = placeOfWork[:len(placeOfWork)-1]
+
+	employee.placeOfWork = placeOfWork[:len(placeOfWork)-1]
 
 	fmt.Println("I see, you work at", employee.placeOfWork)
 	fmt.Println("How many years at?", employee.placeOfWork, "?")
-	fmt.Scanln(&timeOfEmployment)
+	fmt.Scanln(&employee.timeOfEmployment)
 
-	if(timeOfEmployment <= 1) {
+	if(employee.timeOfEmployment <= 1) {
 		fmt.Println("I see, less than one year, you are a new employee")
-		fileOperations.WriteOutputToFile(firstName, placeOfWork, timeOfEmployment)
+		fileOperations.WriteOutputToFile(employee.firstName, placeOfWork, employee.timeOfEmployment)
 
-	} else if( timeOfEmployment >= 2 && timeOfEmployment <= 5) {
+	} else if( employee.timeOfEmployment >= 2 && employee.timeOfEmployment <= 5) {
 		fmt.Println("You are a mid level employee")
-		fileOperations.WriteOutputToFile(firstName, placeOfWork, timeOfEmployment)
+		fileOperations.WriteOutputToFile(employee.firstName, placeOfWork, employee.timeOfEmployment)
 	}
 
 }
